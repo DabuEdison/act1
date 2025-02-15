@@ -1,96 +1,137 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio - Edison G. Dabu</title>
+  <title>My Portfolio</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
       background-color: #1a202c;
       color: white;
     }
-
+  
     .banner {
       position: relative;
-      background-color: #2d3748;
+      background: linear-gradient(to bottom, #2d3748, #1a202c);
       height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
+      padding: 20px;
     }
-
+  
     .navbar {
       position: absolute;
       top: 0;
       width: 100%;
       display: flex;
       justify-content: space-between;
-      padding: 10px 20px;
+      padding: 15px 30px;
       background-color: rgba(0, 0, 0, 0.7);
       backdrop-filter: blur(5px);
+      border-bottom: 2px solid #f6e05e;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
     }
-
+  
     .navbar a {
       color: white;
       text-decoration: none;
-      margin: 0 10px;
-      transition: color 0.3s;
+      margin: 0 15px;
+      font-weight: bold;
+      transition: color 0.3s, transform 0.3s;
     }
-
+  
     .navbar a:hover {
       color: #f6e05e;
+      transform: translateY(-2px);
     }
-
+  
     .profile-image {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 20px;
-      border: 4px solid white;
-    }
-
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 5px solid #f6e05e;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    transition: box-shadow 0.5s ease-in-out, border-color 0.5s ease-in-out;
+  }
+  
+  /* Highlight animation on hover */
+  .profile-image:hover {
+    border-color: #ffea00;
+    box-shadow: 0 0 30px #ffea00, 0 0 50px #f6e05e;
+  }
+  
     h1 {
-      font-size: 36px;
+      font-size: 40px;
       font-weight: bold;
       color: #f6e05e;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
     }
-
+  
     p {
       max-width: 600px;
       margin: 0 auto;
-      padding: 10px;
-      line-height: 1.6;
+      padding: 15px;
+      line-height: 1.8;
       color: #e2e8f0;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
     }
-
+  
     .section {
-      padding: 40px 20px;
+      padding: 50px 20px;
       background-color: #2d3748;
       text-align: center;
+      margin-bottom: 40px;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+      animation: fadeInUp 1.2s ease-in-out;
+    }
+  
+    .image-gallery {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
       margin-bottom: 20px;
-      border-radius: 8px;
     }
-
+  
     .image-gallery img {
-      width: 100px;
-      height: 100px;
-      border-radius: 8px;
+      width: 120px;
+      height: 120px;
+      border-radius: 10px;
       object-fit: cover;
-      margin: 5px;
-      transition: transform 0.3s;
+      margin: 10px;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
-
+  
     .image-gallery img:hover {
       transform: scale(1.1);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+    }
+  
+    /* Smooth fade-in effect */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
+  
 </head>
 <body>
   <!-- Banner Section -->
@@ -103,10 +144,9 @@
         <a href="https://www.instagram.com/dabuedison" target="_blank"><i class="fab fa-instagram"></i></a>
       </div>
       <nav>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#contacts">Contact</a>
-      </nav>
+        <a href="{% url 'portfolio:index' %}">Home</a>
+    </nav>
+    
     </div>
 
     <img src="{% static 'myphoto.jpg' %}" alt="Edison G. Dabu" class="profile-image">
@@ -117,29 +157,29 @@
   </div>
 
   <!-- Journey as a Sepak Takraw Player -->
-  <div class="section" id="sepak-takraw">
-    <h1>My Journey in Sepak Takraw</h1>
-    <div class="image-gallery">
-      <img src="ccs.jpg" alt="Sepak Takraw">
-      <img src="ccs2.jpg" alt="Sepak Takraw">
-      <img src="ccs3.jpg" alt="Sepak Takraw">
-    </div>
-    <p>
-      I didn't participate in sports during elementary school until a friend invited me to join the Sepak Takraw team for our sports fest. This experience sparked my love for Sepak Takraw, and I have continued to play and represent my school through high school and college.
-    </p>
+<div class="section" id="sepak-takraw">
+  <h1>My Journey in Sepak Takraw</h1>
+  <div class="image-gallery">
+    <img src="{% static 'ccs.jpg' %}" alt="Sepak Takraw">
+    <img src="{% static 'ccs2.jpg' %}" alt="Sepak Takraw">
+    <img src="{% static 'ccs3.jpg' %}" alt="Sepak Takraw">
   </div>
+  <p>
+    I didn't participate in sports during elementary school until a friend invited me to join the Sepak Takraw team for our sports fest. This experience sparked my love for Sepak Takraw, and I have continued to play and represent my school through high school and college.
+  </p>
+</div>
 
-  <!-- Journey as an IT student -->
-  <div class="section" id="it-student">
-    <h1>My Journey as an IT Student</h1>
-    <div class="image-gallery">
-      <img src="hunt.jpg" alt="Game development">
-      <img src="ecommerce.jpg" alt="e-commerce project">
-      <img src="networking.jpg" alt="network setup">
-    </div>
-    <p>
-      During my time as an IT student, I have worked on various projects such as game development, building an e-commerce site, and setting up networks. Each project has helped me develop my technical and teamwork skills.
-    </p>
+<!-- Journey as an IT student -->
+<div class="section" id="it-student">
+  <h1>My Journey as an IT Student</h1>
+  <div class="image-gallery">
+    <img src="{% static 'hunt.jpg' %}" alt="Game development">
+    <img src="{% static 'ecommerce.jpg' %}" alt="e-commerce project">
+    <img src="{% static 'networking.jpg' %}" alt="network setup">
   </div>
+  <p>
+    During my time as an IT student, I have worked on various projects such as game development, building an e-commerce site, and setting up networks. Each project has helped me develop my technical and teamwork skills.
+  </p>
+</div>
 </body>
 </html>
